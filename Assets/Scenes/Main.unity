@@ -1518,6 +1518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   confirmPanel: {fileID: 2608081230958859027, guid: c4087ea767b031d4ba8614ba550548cf, type: 3}
+  signinPanel: {fileID: 2608081230958859027, guid: 12bc0202fbf608044b225be4ce06b302, type: 3}
 --- !u!1 &1819242660
 GameObject:
   m_ObjectHideFlags: 0

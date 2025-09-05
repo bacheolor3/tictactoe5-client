@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject confirmPanel;
+    [SerializeField] private GameObject signinPanel;
 
     private Constants.GameType _gameType;
 
@@ -12,6 +13,11 @@ public class GameManager : Singleton<GameManager>
     private GameLogic _gameLogic;
 
     private GameUIController _gameUIController;
+
+    private void Start()
+    {
+        OpenSigninPanel();
+    }
 
     public void ChangeToGameScene(Constants.GameType gameType)
     {
@@ -30,6 +36,15 @@ public class GameManager : Singleton<GameManager>
         {
             var confirmPanelObject = Instantiate(confirmPanel, _canvas.transform);
             confirmPanelObject.GetComponent<ConfirmPanelController>().Show(message, onConfirmButtonClicked);
+        }
+    }
+
+    public void OpenSigninPanel()
+    {
+        if(_canvas != null)
+        {
+            var siginPanelObject = Instantiate(signinPanel, _canvas.transform);
+            siginPanelObject.GetComponent<SigninPanelController>().Show();
         }
     }
 
