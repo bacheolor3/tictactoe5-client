@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -16,7 +17,14 @@ public class SigninPanelController : PanelController
 {
     [SerializeField] private TMP_InputField usernameInputfield;
     [SerializeField] private TMP_InputField passwordInputfield;
-       
+
+    public Action onClosed;
+
+    private void OnDestroy()
+    {
+        onClosed?.Invoke();
+        onClosed = null;
+    }
 
     public void OnClickConfirmButton()
     {
@@ -36,7 +44,8 @@ public class SigninPanelController : PanelController
         StartCoroutine(NetworkManager.Instance.Signin(signinData, 
             () =>
             {
-                Hide();
+                Hide(() => GameManager.Instance.MarkSignedIn());
+                onClosed?.Invoke();
             }, 
             (result) =>
             {
@@ -56,9 +65,15 @@ public class SigninPanelController : PanelController
                     {
                         passwordInputfield.text = "";
                     });
-            }
+                }
+                Shake();
         }));
 
+    }
+
+    public void SignupButton()
+    {
+        GameManager.Instance.OpenSignupPanel();
     }
 
 }

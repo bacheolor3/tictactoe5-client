@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Constants;
 
 public class GameLogic 
 {
