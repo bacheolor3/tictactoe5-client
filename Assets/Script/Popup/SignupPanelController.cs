@@ -17,6 +17,7 @@ public class SignupPanelController : PanelController
 {
     [SerializeField] private TMP_InputField userNewnameInputfield;
     [SerializeField] private TMP_InputField userNewPwInputfield;
+    [SerializeField] private TMP_InputField passwordCkField;
     [SerializeField] private TMP_InputField userNewnickfield;
 
     public void OnClickConfirmButton()
@@ -24,6 +25,7 @@ public class SignupPanelController : PanelController
         string newName = userNewnameInputfield.text;
         string newPw = userNewPwInputfield.text;
         string newNick = userNewnickfield.text;
+        string newPwChk = passwordCkField.text;
 
         if (string.IsNullOrEmpty(newName) || string.IsNullOrEmpty(newPw) || string.IsNullOrEmpty(newNick))
         {
@@ -39,6 +41,13 @@ public class SignupPanelController : PanelController
                 userNewnameInputfield.text = "";
                 userNewnameInputfield.Select();
             });
+            Shake();
+            return;
+        }
+
+        if(newPw != newPwChk)
+        {
+            GameManager.Instance.OpenConfirmPanel("비밀번호가 다릅니다", () => { });
             Shake();
             return;
         }
@@ -86,5 +95,10 @@ public class SignupPanelController : PanelController
                 Shake();
             }
         ));
+    }
+
+    public void OnClickCancelButton()
+    {
+        Hide();
     }
 }

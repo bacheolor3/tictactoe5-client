@@ -68,6 +68,7 @@ public class NetworkManager : Singleton<NetworkManager>
             //          int lastIndex = cookie.LastIndexOf(';');
             //          string sid = cookie.Substring(0, lastIndex);
             //          PlayerPrefs.SetString("sid", sid);
+            //          PlayerPrefs.set
             //        }
             //        success?.Invoke();
             //    }
